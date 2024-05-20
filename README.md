@@ -78,3 +78,7 @@ docker/sdk trouble
 docker/sdk boot -s deploy.dev.yml
 docker/sdk up --build --assets --data
 ```
+### useful commands
+Generate IDE auto completion files.
+`dev:ide-auto-completion:generate` 
+
