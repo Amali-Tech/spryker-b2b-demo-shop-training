@@ -1,17 +1,14 @@
 <?php
 
-namespace Pyz\Client\Antelope;
+namespace Pyz\Client\Antelope\Reader;
 
 use Generated\Shared\Transfer\AntelopeTransfer;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 
-interface AntelopeClientInterface
+interface AntelopeReaderInterface
 {
     /**
-     * @param GlueRequestTransfer $glueRequestTransfer
-     *
      * @return AntelopeTransfer
      */
     public function getAntelope(GlueRequestTransfer $glueRequestTransfer): AntelopeTransfer;
-
 }

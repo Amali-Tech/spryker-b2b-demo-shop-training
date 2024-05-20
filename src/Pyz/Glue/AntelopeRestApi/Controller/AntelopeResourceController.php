@@ -2,23 +2,28 @@
 
 namespace Pyz\Glue\AntelopeRestApi\Controller;
 
-use Generated\Shared\Transfer\AntelopeTransfer;
 use Generated\Shared\Transfer\GlueRequestTransfer;
 use Generated\Shared\Transfer\GlueResourceTransfer;
 use Generated\Shared\Transfer\GlueResponseTransfer;
+use Pyz\Glue\AntelopeRestApi\AntelopeRestApiFactory;
 use Spryker\Glue\Kernel\Backend\Controller\AbstractBackendApiController;
 
+/**
+ * @method AntelopeRestApiFactory getFactory()
+ */
 class AntelopeResourceController extends AbstractBackendApiController
 {
-    public function getAction(string $id, GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
+    public function getAction(GlueRequestTransfer $glueRequestTransfer): GlueResponseTransfer
     {
+        $antelopeTransfer = $this->getFactory()
+            ->getAntelopeClient()
+            ->getAntelope($glueRequestTransfer);
+
         return (new GlueResponseTransfer())
             ->addResource(
                 (new GlueResourceTransfer())
                     ->setAttributes(
-                        (new AntelopeTransfer())
-                            ->setIdAntelope($id)
-                            ->setName('Togbe')
+                        $antelopeTransfer
                     )
             );
     }
